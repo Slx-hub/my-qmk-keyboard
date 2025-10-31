@@ -1,22 +1,19 @@
-# Dactyl Manuform - Custom Build with Vial Support
+# Dactyl Manuform - Custom 4x6 with Vial
 
-This is a custom Dactyl Manuform keyboard firmware with Vial support for easy keymap configuration.
+This acts as a reference of what i have done in case i need to repeat it again.
 
-## 📋 Project Structure
+## Setup
 
-```
-vial/
-├── config.h              # Main keyboard configuration
-├── rules.mk              # Build rules and feature flags
-├── info.json             # Keyboard metadata and layout
-├── dactyl_manuform.c     # Keyboard initialization code
-├── keymaps/
-│   └── vial/
-│       ├── keymap.c      # Default keymap (4 layers)
-│       ├── vial.json     # Vial layout definition
-│       └── rules.mk      # Vial-specific build rules
-└── README.md             # This file
-```
+- install QMK MSYS
+- clone vial fork of qmk and run MSYS there
+- run `make git-submodule`
+- run `qmk doctor`
+
+
+## Flashing
+
+- run `qmk flash -kb handwired/dactyl_manuform/4x6_5 -km default`
+
 
 ## 🔧 Hardware Configuration
 
@@ -45,6 +42,9 @@ vial/
 # Clone Vial QMK
 git clone https://github.com/vial-kb/vial-qmk.git
 cd vial-qmk
+
+# IMPORTANT: Initialize submodules (LUFA, ChibiOS, etc.)
+git submodule update --init --recursive
 
 # Copy this project into keyboards directory
 # Copy the entire 'vial' folder to: keyboards/handwired/dactyl_manuform_custom/
