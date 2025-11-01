@@ -8,12 +8,11 @@ This acts as a reference of what i have done in case i need to repeat it again.
 - clone vial fork of qmk and run MSYS there
 - run `make git-submodule`
 - run `qmk doctor`
-
+- run `create_symlink.ps1`
 
 ## Flashing
 
-- run `qmk flash -kb handwired/dactyl_manuform/4x6_5 -km default`
-
+- run `qmk flash -kb handwired/dactyl_slx -km vial`
 
 ## 🔧 Hardware Configuration
 

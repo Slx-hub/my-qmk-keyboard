@@ -1,0 +1,1 @@
+New-Item -ItemType SymbolicLink -Path "C:\dev\dactyl\vial-qmk\keyboards\handwired\dactyl_slx" -Target "C:\dev\dactyl\vial\custom_keymaps\dactyl_manuform\4x6_5"
