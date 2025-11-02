@@ -7,9 +7,6 @@
         "pid": "0x3436",
         "device_version": "0.0.1"
     },
-    "ws2812": {
-        "pin": "D3"
-    },
     "features": {
         "bootmagic": false,
         "command": true,
@@ -60,12 +57,12 @@
                 {"matrix": [3, 2], "x": 2, "y": 3},
                 {"matrix": [3, 3], "x": 3, "y": 3},
 
-                {"matrix": [3, 1], "x": 4, "y": 4},
-                {"matrix": [4, 1], "x": 5, "y": 4},
-                {"matrix": [4, 0], "x": 6, "y": 4},
+                {"matrix": [3, 4], "x": 4, "y": 4},
+                {"matrix": [4, 4], "x": 5, "y": 4},
+                {"matrix": [4, 5], "x": 6, "y": 4},
 
-                {"matrix": [4, 2], "x": 5, "y": 5},
-                {"matrix": [4, 3], "x": 6, "y": 5}
+                {"matrix": [4, 3], "x": 5, "y": 5},
+                {"matrix": [4, 2], "x": 6, "y": 5}
             ]
         }
     }
