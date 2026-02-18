@@ -5,6 +5,11 @@
 // Unique 8-byte identifier for your keyboard (change this to something unique!)
 #define VIAL_KEYBOARD_UID {0x73, 0x6c, 0x61, 0x6b, 0x78, 0x73, 0x69, 0x69}
 
+/* I2C communication for split (faster and more reliable than serial) */
+#define USE_I2C
+#define I2C1_SDA_PIN D1          // Pin 2 on Pro Micro (SDA)
+#define I2C1_SCL_PIN D0          // Pin 3 on Pro Micro (SCL)
+
 // Unlock combo: keys you must press together to unlock Vial configuration
 // These are matrix positions [row, col]
 // Example: top-left key (0,0) and top-right key (0,5)

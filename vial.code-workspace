@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "vial"
+		},
+		{
+			"path": "vial-qmk"
+		},
+		{
+			"path": "vial-gui"
+		},
+		{
+			"path": "qmk-dactyl-fork"
+		},
+		{
+			"path": "qmk-configurator"
+		},
+		{
+			"path": "arduino-sanity"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

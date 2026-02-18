@@ -2,6 +2,16 @@
 
 This acts as a reference of what i have done in case i need to repeat it again.
 
+## Handwritten:
+
+Ok so Serial comms worked fuck-all, but inside arduino-sanity is a i2c-test which worked out.
+Now i only have to get it working on a keyboard. Currently trying to remember what to flash so that it looks keyboardy to begin with.
+- tried qmk fork, forgot run command.
+- remembered i was polishing the vial ui layout
+- flashed `qmk flash -kb handwired/dactyl_slx -km vial -bl avrdude-split-left` (and without -bl) that's not it..
+
+# AI Generated
+
 ## Setup
 
 - install QMK MSYS

@@ -1,0 +1,135 @@
+I2C WIRING DIAGRAM FOR SPLIT KEYBOARD
+======================================
+
+Pro Micro Pinout Reference:
+     ┌─────────────┐
+     │   Pro Micro │
+     │   (Top View)│
+     ├─────────────┤
+ TX  │ 1        RAW│
+ RX  │ 0        GND│ ← Ground
+ GND │GND       RST│
+ GND │GND       VCC│ ← +5V Power
+ 2   │ 2    SDA A4 │
+ 3   │ 3    SCL A5 │
+ 4   │ 4         21│
+     │ 5         20│
+     │ 6         19│
+     │ 7         18│
+     │ 8         15│
+     │ 9         14│
+     └─────────────┘
+
+I2C Connection Between Two Pro Micros:
+========================================
+
+LEFT PRO MICRO (Master - USB connected)    RIGHT PRO MICRO (Slave - External Power)
+┌────────────────────┐                     ┌────────────────────┐
+│                    │                     │                    │
+│  Pin 2 (SDA) ──────┼─────────────────────┼────── Pin 2 (SDA) │
+│                    │         │           │                    │
+│  Pin 3 (SCL) ──────┼─────────┼───────────┼────── Pin 3 (SCL) │
+│                    │         │     │     │                    │
+│  GND ──────────────┼─────────┼─────┼─────┼────── GND         │
+│                    │         │     │     │                    │
+│  VCC (+5V) ────────┼─────┐   │     │     │                    │
+│                    │     │   │     │     │                    │
+└────────────────────┘     │   │     │     └────────────────────┘
+                           │   │     │
+                       4.7kΩ 4.7kΩ   │
+                       Pull-up Pull-up│
+                       Resistors      │
+                                      │
+                        Connect to +5V (VCC)
+
+Detailed Connections:
+=====================
+
+1. SDA Line (Pin 2 on both sides):
+   - Connect Pin 2 on LEFT Pro Micro to Pin 2 on RIGHT Pro Micro
+   - Add 4.7kΩ resistor from SDA to +5V (VCC)
+
+2. SCL Line (Pin 3 on both sides):
+   - Connect Pin 3 on LEFT Pro Micro to Pin 3 on RIGHT Pro Micro
+   - Add 4.7kΩ resistor from SCL to +5V (VCC)
+
+3. Ground:
+   - Connect GND on LEFT Pro Micro to GND on RIGHT Pro Micro
+   - This is ESSENTIAL for common reference
+
+4. Power:
+   - LEFT (Master): Powered by USB
+   - RIGHT (Slave): Powered externally (battery, USB from computer, etc.)
+   - Pull-up resistors can connect to either side's VCC
+
+
+TRRS/TRS Cable Pinout (for permanent installation):
+===================================================
+
+TRRS Jack (4 conductor):
+  ┌─┐
+  │ │ Tip    → VCC (+5V or leave disconnected)
+  │─│ Ring 1 → SDA (Pin 2)
+  │─│ Ring 2 → SCL (Pin 3)
+  │─│ Sleeve → GND
+  └─┘
+
+TRS Cable (3 conductor) - MINIMUM REQUIRED:
+  ┌─┐
+  │ │ Tip    → SDA (Pin 2)
+  │─│ Ring   → SCL (Pin 3)
+  │─│ Sleeve → GND
+  └─┘
+
+Note: TRS cable is sufficient since each side has its own power.
+      Pull-up resistors should be on the keyboard PCB, not in the cable.
+
+
+Breadboard Testing Setup:
+==========================
+
+LEFT CONTROLLER (Master)          RIGHT CONTROLLER (Slave)
+    [USB Cable]                      [USB Cable or Battery]
+        │                                    │
+    ┌───┴───┐                            ┌───┴───┐
+    │ Pro   │                            │ Pro   │
+    │ Micro │                            │ Micro │
+    │       │                            │       │
+    │   2───┼─────┬──────────────────────┼───2   │  SDA
+    │   3───┼─────┼───┬──────────────────┼───3   │  SCL
+    │  GND──┼─────┼───┼──────────────────┼──GND  │  Ground
+    │  VCC──┼──┬──┘   │                  │       │  +5V
+    └───────┘  │      │                  └───────┘
+               │      │
+            4.7kΩ  4.7kΩ
+               │      │
+               └──────┴──── Connect together to VCC rail
+
+
+Shopping List:
+==============
+□ 2× 4.7kΩ resistors (1/4W or 1/8W)
+□ Wire or TRRS cable
+□ Breadboard (for testing)
+□ Jumper wires (for testing)
+
+
+Common Issues:
+==============
+1. Pull-up resistors REQUIRED - I2C won't work without them!
+2. Both devices must share common ground
+3. Cable length: Keep under 1 meter for 100kHz operation
+4. If slave doesn't respond: Check power to slave controller
+5. Error code 2: Slave address not found (check wiring)
+6. Error code 5: Timeout (check pull-up resistors)
+
+
+Why I2C is Better than Single-Wire:
+====================================
+✓ Separate clock and data lines (no timing sync issues)
+✓ Hardware-based communication (no bit-banging)
+✓ Built-in acknowledgment (detects communication errors)
+✓ Pull-up resistors provide noise immunity
+✓ Industry standard protocol (Arduino Wire library)
+✓ Multiple devices can share the same bus
+✗ Requires 2 wires instead of 1 (still only need TRS cable)
