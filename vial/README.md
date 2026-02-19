@@ -8,7 +8,9 @@ Ok so Serial comms worked fuck-all, but inside arduino-sanity is a i2c-test whic
 Now i only have to get it working on a keyboard. Currently trying to remember what to flash so that it looks keyboardy to begin with.
 - tried qmk fork, forgot run command.
 - remembered i was polishing the vial ui layout
+- opened `QMK MSYS` at vial-qmk
 - flashed `qmk flash -kb handwired/dactyl_slx -km vial -bl avrdude-split-left` (and without -bl) that's not it..
+- using eeprom handedness sounds good, `#define EE_HANDS` in config.h and then `-bl avrdude-split-left` or `-bl avrdude-split-right`
 
 # AI Generated
 
